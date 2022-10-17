@@ -77,8 +77,8 @@ public class ShowRoute extends EasyGraphics {
 			x += 3*MARGIN;
 			y += 4*MARGIN;
 		}
-		setColor(0, 0, 255);
-		int blåSirkel = fillCircle((int)x, (int) y , RADIUS*2);
+		
+		
 		setColor(0, 255, 0);
 		fillCircle((int)x,(int)y, RADIUS);
 		for(int i = 1; i < gpspoints.length; i++) {
@@ -89,15 +89,35 @@ public class ShowRoute extends EasyGraphics {
 			x += x2;
 			y += y2;
 			
-//			System.out.println(y);
-//			System.out.println(x);
 			setColor(0, 255, 0);
 			fillCircle((int)x, (int)y, RADIUS);
-			//MOVE SIRKEL: ((int) x, (int) y, RADIUS *2) ID: blåSirkel
+			
 			drawLine((int)x1, (int)y1, (int)x, (int) y);
 			x1 = x;
 			y1= y;
 			
+		}
+		
+		
+		x = xstart;
+		y = 2 * MARGIN + gpspoints[0].getLatitude();
+		if(gpspoints.length > 110 && gpspoints.length < 190) {
+			y += 3 *MARGIN ; 
+			}
+			if(gpspoints.length > 420) {
+				x += 3*MARGIN;
+				y += 4*MARGIN;
+			}
+		setColor(0, 0, 255);
+		setSpeed(1);
+		int blåSirkel = fillCircle((int)x, (int) y , RADIUS*2);
+		
+		for(int i = 1; i < gpspoints.length; i++) {
+			double x2 = (gpspoints[i].getLongitude() - gpspoints[i-1].getLongitude())*xstep();
+			double y2 = (gpspoints[i-1].getLatitude() - gpspoints[i].getLatitude())*ystep();
+			x += x2;
+			y += y2;
+			moveCircle(blåSirkel,(int) x, (int) y);
 		}
 	}
 

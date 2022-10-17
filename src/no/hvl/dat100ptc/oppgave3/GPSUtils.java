@@ -98,6 +98,7 @@ public class GPSUtils {
 		String hours = "" + h;
 		String minutes = "" + m;
 		String seconds = "" + s;
+		String TIMESEP = "%02d:%02d:02d";
 
 		String timestr = null;
 		
@@ -111,6 +112,10 @@ public class GPSUtils {
 			seconds = "0" + seconds;
 		}
 		timestr = "  " + hours + ":" + minutes + ":" + seconds;
+		
+		while(timestr.length() <= TEXTWIDTH) {
+			timestr = " " + timestr;
+		}
 
 		return timestr;
 	}
@@ -121,7 +126,7 @@ public class GPSUtils {
 		
 		String str =  Double.toString(Math.round(d*100.0) /100.0);
 		
-		while(str.length() != TEXTWIDTH) {
+		while(str.length() <= TEXTWIDTH) {
 			str = " " + str;
 		}
 		return str;

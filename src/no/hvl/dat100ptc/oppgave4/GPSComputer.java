@@ -122,19 +122,19 @@ public class GPSComputer {
 		double met = 4.0;		
 		double speedmph = speed * MS;
 		
-		if(speedmph > 10.0) {
+		if(speedmph >= 10.0) {
 			met = 6.0;
 		}
-		if(speedmph > 12.0) {
+		if(speedmph >= 12.0) {
 			met = 8.0;
 		}
-		if(speedmph > 14.0) {
+		if(speedmph >= 14.0) {
 			met = 10.0;
 		}
-		if(speedmph > 16.0) {
+		if(speedmph >= 16.0) {
 			met = 12.0;
 		}
-		if(speedmph > 20.0) {
+		if(speedmph >= 20.0) {
 			met = 16.0;
 		}
 		
