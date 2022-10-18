@@ -12,19 +12,19 @@ import javax.swing.JOptionPane;
 
 public class ShowProfile extends EasyGraphics {
 
-	private static final int MARGIN = 50;  // margin on the sides 
-	
+	private static final int MARGIN = 50; // margin on the sides
+
 	private static int MAXBARHEIGHT = 500; // assume no height above 500 meters
-	
+
 	private GPSPoint[] gpspoints;
 
 	public ShowProfile() {
 
 		String filename = JOptionPane.showInputDialog("GPS data filnavn: ");
-		GPSComputer gpscomputer =  new GPSComputer(filename);
+		GPSComputer gpscomputer = new GPSComputer(filename);
 
 		gpspoints = gpscomputer.getGPSPoints();
-		
+
 	}
 
 	public static void main(String[] args) {
@@ -38,22 +38,22 @@ public class ShowProfile extends EasyGraphics {
 		makeWindow("Height profile", 2 * MARGIN + 3 * N, 2 * MARGIN + MAXBARHEIGHT);
 
 		// top margin + height of drawing area
-		showHeightProfile(MARGIN + MAXBARHEIGHT); 
+		showHeightProfile(MARGIN + MAXBARHEIGHT);
 	}
 
 	public void showHeightProfile(int ybase) {
 
 		int x = MARGIN, ystart = ybase;
 		setColor(0, 0, 255);
-		for(int i = 0; i < gpspoints.length; i++) {
-			int yslutt =ystart - (int)(gpspoints[i].getElevation());
-			if(yslutt > ystart ) {
+		for (int i = 0; i < gpspoints.length; i++) {
+			int yslutt = ystart - (int) (gpspoints[i].getElevation());
+			if (yslutt > ystart) {
 				yslutt = ystart;
 			}
 			drawLine(x, ystart, x, yslutt);
 			x += 3;
 		}
-		
+
 	}
 
 }
